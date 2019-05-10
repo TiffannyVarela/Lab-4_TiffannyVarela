@@ -19,7 +19,7 @@ void printMatrix(char**,int);
 char** readMatriz(char**,int);
 
 //calculo de azulejos
-char** calculo(char**, int, int, int);
+char** calculo(char**, int);
 
 int main(){
 	int size;
@@ -32,11 +32,12 @@ int main(){
 				cin>>size;
 				matriz = provisionarMatriz(size);
 				readMatriz(matriz,size);
+				calculo(matriz, size);
 				printMatrix(matriz,size); 
-				for(int i=0;i<size;i++){
+			/*	for(int i=0;i<size;i++){
 					for(int j=0;j<size;j++){
 					}
-				}
+				}*/
                         break;
 
 			case 2:
@@ -111,5 +112,36 @@ void printMatrix(char** matriz, int size){
         }
 }
 
-char** calculo (char** matriz, int size, int x, int y){
+char** calculo (char** matriz, int size){
+	for(int i=1;i<size;i++){
+		for(int j=0;j<size;j++){
+			if(j==0){
+				if(matriz[i-1][j] == '^' && matriz [i-1][j+1] == '^' || matriz[i-1][j] == '.' && matriz [i-1][j+1] == '^'){
+					matriz [i][j] = '^';
+				}
+				else{
+					matriz [i][j]='.';
+				}
+			}
+
+			if (j==size-1){
+				if(matriz[i-1][j] == '^' && matriz [i-1][j-1] == '^' || matriz[i-1][j] == '^' && matriz [i-1][j-1] == '.'){
+                                        matriz [i][j] = '^';
+                                }
+                                else{
+                                        matriz [i][j]='.';
+                                }
+
+			}
+			if (j !=0 && j!=size-1){
+			//if(matriz [i-1][j-1] == '^' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '.' || matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^' || matriz [i-1][j-1] == '^' && matriz [i-1][j] == '.' && matriz [i-1][j+1] == '.' || matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^'){
+                                        matriz [i][j] = '^';
+                     	//}
+			//else{
+				matriz [i][j] =='.';
+			//}
+			}
+		}
+	}
+	return matriz;
 }
