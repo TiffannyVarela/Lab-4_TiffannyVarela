@@ -118,6 +118,7 @@ void printMatrix(char** matriz, int size){
 
 char** calculo (char** matriz, int size){
 	char x, y, z;
+	int cont = 0;
 	for(int i=1;i<size;i++){
 		for(int j=0;j<size;j++){
 			if(j==0){
@@ -128,8 +129,6 @@ char** calculo (char** matriz, int size){
 					matriz [i][j]='.';
 				}
 			}
-			if (j !=0 && j!=size-1)
-				matriz [i][j] = '%';
 			if (j==size-1){
 				if((matriz[i-1][size-2] == '^' && matriz [i-1][size-1] == '^') || (matriz[i-1][size-2] == '^' && matriz [i-1][size-1] == '.')){
                                         matriz [i][j] = '^';
@@ -140,7 +139,6 @@ char** calculo (char** matriz, int size){
 
 			}
 			if (j !=0 && j!=size-1){
-//			if((matriz [i-1][j-1] == '^' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '.') ||( matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^') ||( matriz [i-1][j-1] == '^' && matriz [i-1][j] == '.' && matriz [i-1][j+1] == '.') ||(matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^')){
 			x=matriz[i-1][j-1];
 		      y=matriz[i-1][j];
 	      	      z=matriz[i-1][j+1];
@@ -148,7 +146,7 @@ char** calculo (char** matriz, int size){
 				matriz [i][j] = '^';
                      	}
 			else{
-				matriz [i][j] =='.';
+				matriz [i][j] ='.';
 			}
 			}
 		}
