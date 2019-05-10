@@ -24,6 +24,9 @@ char** calculo(char**, int);
 //metodo booleano revision
 bool revision (char, char,char);
 
+//contar azulejos seguros
+int contar(char**, int);
+
 int main(){
 	int size;
 	int opc=0;
@@ -37,10 +40,6 @@ int main(){
 				readMatriz(matriz,size);
 				calculo(matriz, size);
 				printMatrix(matriz,size); 
-			/*	for(int i=0;i<size;i++){
-					for(int j=0;j<size;j++){
-					}
-				}*/
                         break;
 
 			case 2:
@@ -171,4 +170,16 @@ bool revision (char x, char y, char z){
 	else{
 		return false;
 	}
+}
+
+int contar(char** matriz, int size){
+	int cont =0 ;
+	for(int i=0;i<size;i++){
+		for(int j=0;j<size;j++){
+			if(matriz[i][j]=='.'){
+				cont++;
+			}
+		}
+	}
+	return cont;
 }
