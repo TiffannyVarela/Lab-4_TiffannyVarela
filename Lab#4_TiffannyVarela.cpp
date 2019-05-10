@@ -21,6 +21,9 @@ char** readMatriz(char**,int);
 //calculo de azulejos
 char** calculo(char**, int);
 
+//metodo booleano revision
+bool revision (char, char,char);
+
 int main(){
 	int size;
 	int opc=0;
@@ -113,6 +116,7 @@ void printMatrix(char** matriz, int size){
 }
 
 char** calculo (char** matriz, int size){
+	char x, y, z;
 	for(int i=1;i<size;i++){
 		for(int j=0;j<size;j++){
 			if(j==0){
@@ -123,9 +127,10 @@ char** calculo (char** matriz, int size){
 					matriz [i][j]='.';
 				}
 			}
-
+			if (j !=0 && j!=size-1)
+				matriz [i][j] = '%';
 			if (j==size-1){
-				if(matriz[i-1][j] == '^' && matriz [i-1][j-1] == '^' || matriz[i-1][j] == '^' && matriz [i-1][j-1] == '.'){
+				if((matriz[i-1][size-2] == '^' && matriz [i-1][size-1] == '^') || (matriz[i-1][size-2] == '^' && matriz [i-1][size-1] == '.')){
                                         matriz [i][j] = '^';
                                 }
                                 else{
@@ -134,14 +139,36 @@ char** calculo (char** matriz, int size){
 
 			}
 			if (j !=0 && j!=size-1){
-			//if(matriz [i-1][j-1] == '^' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '.' || matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^' || matriz [i-1][j-1] == '^' && matriz [i-1][j] == '.' && matriz [i-1][j+1] == '.' || matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^'){
-                                        matriz [i][j] = '^';
-                     	//}
-			//else{
+//			if((matriz [i-1][j-1] == '^' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '.') ||( matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^') ||( matriz [i-1][j-1] == '^' && matriz [i-1][j] == '.' && matriz [i-1][j+1] == '.') ||(matriz [i-1][j-1] == '.' && matriz [i-1][j] == '^' && matriz [i-1][j+1] == '^')){
+			x=matriz[i-1][j-1];
+		      y=matriz[i-1][j];
+	      	      z=matriz[i-1][j+1];
+			if(revision (x,y,z)){	      
+				matriz [i][j] = '^';
+                     	}
+			else{
 				matriz [i][j] =='.';
-			//}
+			}
 			}
 		}
 	}
 	return matriz;
+}
+
+bool revision (char x, char y, char z){
+	if(x == '^' && y == '^' && z == '.'){
+		return true;
+	}
+	else if( x == '.' && y == '^' && z == '^'){
+		return true;
+	}
+	else if(x == '.' && y == '.' && z == '^'){
+		return true;
+	}
+	else if( x == '^' && y == '.' && z == '.'){
+		return true;
+	}
+	else{
+		return false;
+	}
 }
