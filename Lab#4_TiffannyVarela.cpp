@@ -15,7 +15,11 @@ void liberarMatriz(char**&,int);
 //imprimir la matriz
 void printMatrix(char**,int);
 
+//leer primera fila de la matriz
+char** readMatriz(char**,int);
 
+//calculo de azulejos
+char** calculo(char**, int, int, int);
 
 int main(){
 	int size;
@@ -27,8 +31,12 @@ int main(){
 				cout<<"Ingrese el tamanio de la matriz"<<endl;
 				cin>>size;
 				matriz = provisionarMatriz(size);
-				printMatrix(matriz,size);
-
+				readMatriz(matriz,size);
+				printMatrix(matriz,size); 
+				for(int i=0;i<size;i++){
+					for(int j=0;j<size;j++){
+					}
+				}
                         break;
 
 			case 2:
@@ -68,6 +76,18 @@ char** provisionarMatriz(int size){
         return matrix;
 }
 
+char** readMatriz(char** matriz, int size){
+	for(int i=0;i<size;i++){
+		for(int j=0;j<size;j++){
+			if(i==0){
+				cout<<"Ingrese el valor de casilla ["<<i<<","<<j<<"]"<<endl;
+				cin>>matriz[i][j];
+			}
+		}
+	}
+	return matriz;
+}
+
 void liberarMatriz(char**& matrix, int size){
         for(int i=0;i<size;i++){
                 if (matrix[i]!=NULL){
@@ -91,3 +111,5 @@ void printMatrix(char** matriz, int size){
         }
 }
 
+char** calculo (char** matriz, int size, int x, int y){
+}
