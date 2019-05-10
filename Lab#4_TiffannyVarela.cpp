@@ -40,6 +40,8 @@ int main(){
 				readMatriz(matriz,size);
 				calculo(matriz, size);
 				printMatrix(matriz,size); 
+				cout<<"La cantidad de azulejos seguros es: "<<contar(matriz, size)<<endl;
+				liberarMatriz(matriz, size);
                         break;
 
 			case 2:
