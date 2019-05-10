@@ -19,12 +19,15 @@ void printMatrix(char**,int);
 
 int main(){
 	int size;
+	int opc=0;
 	char** matriz = NULL;
 	do {//inicio do while
                 switch(opc=menu()){//inicio switch
                         case 1:
-				cout<<Ingrese el tamanio de la matriz<<endl;
+				cout<<"Ingrese el tamanio de la matriz"<<endl;
 				cin>>size;
+				matriz = provisionarMatriz(size);
+				printMatrix(matriz,size);
 
                         break;
 
